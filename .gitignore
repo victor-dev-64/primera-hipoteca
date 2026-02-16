@@ -1,0 +1,24 @@
+node_modules/
+dist/
+.env
+.env.local
+.env.*.local
+*.log
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+# Build outputs
+build/
+out/
+
+# Dependencies lock files (opcional, pero a veces es útil)
+yarn.lock
+
+# OS files
+Thumbs.db
+
+# IDE
+*.sublime-project
+*.sublime-workspace
