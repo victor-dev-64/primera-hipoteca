@@ -1,5 +1,5 @@
 import './App.css'
-import {useEffect, useState} from 'react';
+import {useMemo, useState} from 'react';
 
 export default function App() {
 
@@ -11,20 +11,15 @@ export default function App() {
   }
   
   // Configuración global (puede ser extendida en el futuro y usada desde cookies/sesiones)
-  const [locale, setLocale] = useState('es-ES');
-  const [currency, setCurrency] = useState('€');
+  //const [locale, setLocale] = useState('es-ES');
+  //const [currency, setCurrency] = useState('€');
+  const currency = '€'; // Para simplificar, se mantiene como constante por ahora
 
   // Datos iniciales de la hipoteca (pueden ser obtenidos de una API o calculados dinámicamente)
   const [totalPrestamo, setTotalPrestamo] = useState(250000);
   const [tasaInteres, setTasaInteres] = useState(3.5);
   const [plazoAnos, setPlazoAnos] = useState(30);
-  const [cuotaMensual, setCuotaMensual] = useState(calcularCuotaHipoteca(totalPrestamo, tasaInteres, plazoAnos));
-
-  //useEffect para recalcular la cuota mensual cada vez que cambien los datos de la hipoteca
-  useEffect(() => {
-    console.log('Recalculando cuota...');
-    setCuotaMensual(calcularCuotaHipoteca(totalPrestamo, tasaInteres, plazoAnos));
-  }, [totalPrestamo, tasaInteres, plazoAnos]);
+  const cuotaMensual = useMemo(() => calcularCuotaHipoteca(totalPrestamo, tasaInteres, plazoAnos), [totalPrestamo, tasaInteres, plazoAnos]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
